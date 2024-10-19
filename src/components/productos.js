@@ -19,11 +19,11 @@ async function Productos({ query }) {
 
     return (
         <>
-            <Buscar />
-
             <h1 className='text-2xl text-slate-600 py-2  mb-2 border-b-2 border-b-slate-600'>
                 Listado de productos
             </h1>
+
+            <Buscar />
 
             <div className='flex flex-col'>
                 {
@@ -37,7 +37,6 @@ async function Productos({ query }) {
                                         <input type="hidden" name='id' value={producto.id} />
                                         <button formAction={deleteProducto} title='ELIMINAR'>❌</button>
                                     </form>
-                                    {/* <span title='ELIMINAR'>❌</span> */}
                                 </div>
                             </div>
                         ))

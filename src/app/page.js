@@ -22,7 +22,7 @@ export default async function Home({ searchParams }) {
         <label htmlFor='precio'>Precio</label>
         <input id='precio' name='precio' type='number' step='0.01' className='p-1 border border-slate-200' />
 
-        <div className='grid col-span-2 gap-2'>
+        <div className='col-span-2 grid gap-2'>
           <button formAction={createProducto} className='bg-green-600 text-white px-4 py-2 rounded-xl'>
             Guardar producto
           </button>
