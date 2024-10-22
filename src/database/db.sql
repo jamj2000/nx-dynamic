@@ -1,3 +1,7 @@
+CREATE DATABASE productos;
+USE productos;
+
+
 CREATE TABLE productos (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(200) NOT NULL,

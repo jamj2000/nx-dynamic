@@ -1,17 +1,25 @@
-import {
-    createProducto,
-    updateProducto,
-    deleteProducto,
-    getProductos
-} from '@/lib/actions'
-
 import Buscar from '@/components/buscar'
 import Link from 'next/link'
+import { db } from '@/lib/db'
+import { revalidatePath } from 'next/cache'
+
+
+async function deleteProducto(formData) {    
+    'use server'
+    const id = formData.get('id')
+    const sql = 'delete from productos where id = ?'
+    const values = [id]
+
+    const [result, fields] = await db.query(sql, values);
+    revalidatePath('/productos')
+}
 
 
 async function Productos({ query }) {
 
-    const productos = await getProductos(query)
+    const sql = 'select * from `productos` where nombre like ?';
+    const values = [`%${query}%`]
+    const [productos] = await db.query(sql, values);
 
     // Introducimos un retardo artificial
     // await new Promise(resolve => setTimeout(resolve, 2000))
@@ -31,7 +39,7 @@ async function Productos({ query }) {
                         .sort((a, b) => b.id - a.id)  // Orden inverso, de id mayor a menor
                         .map((producto) => (
                             <div key={producto.id} className='p-2 odd:bg-slate-100 flex justify-between'>
-                                <Link href={producto.id.toString()}>{producto.nombre}</Link>
+                                <Link href={`/productos/${producto.id}`}>{producto.nombre}</Link>
                                 <div className='flex gap-6'>
                                     <form>
                                         <input type="hidden" name='id' value={producto.id} />
