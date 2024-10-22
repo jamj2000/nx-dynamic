@@ -3,13 +3,16 @@ import Link from 'next/link'
 import { revalidatePath } from 'next/cache'
 
 
+
 async function deleteProduct(formData) {
     'use server'
     const id = formData.get('id')
+
     const response = await fetch('http://localhost:3001/products/' + id, {
         method: 'DELETE'
     })
-    const data = await response.json()
+    // const data = await response.json()
+
     revalidatePath('/products')
 }
 
@@ -33,7 +36,8 @@ async function Productos({ query }) {
 
             <div className='flex flex-col'>
                 {
-                    data.sort((a, b) => b.id - a.id)  // Orden inverso, de id mayor a menor
+                    data.sort( (a, b) => a.created - b.created ).reverse()  // Orden inverso de tiempo                           
+                        .filter(a => a.name.toLowerCase().includes(query))
                         .map((product) => (
                             <div key={product.id} className='p-2 odd:bg-slate-100 flex justify-between'>
                                 <Link href={`/products/${product.id}`}>{product.name}</Link>

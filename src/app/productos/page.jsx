@@ -27,7 +27,7 @@ function ProductosPage({ searchParams }) {
             <Link href="/" className="fixed right- text-4xl p-2 bg-orange-300 rounded-full">🏠</Link>
 
             <h1 className='py-10 text-3xl text-blue-500 text-center border-b-4 border-b-blue-500'>
-                BASE DE DATOS (productos)
+                BASE DE DATOS
             </h1>
             <form className='my-10 grid grid-cols-[150px_auto] gap-4'>
 

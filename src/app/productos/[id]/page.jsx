@@ -10,14 +10,14 @@ async function ProductoPage({ params }) {
     const [rows] = await db.query(sql, values);
 
     // Introducimos un retardo artificial
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // await new Promise(resolve => setTimeout(resolve, 2000))
 
     const producto = rows[0]
     if (!producto) notFound()
 
     return (
         <section className="min-h-screen max-w-[1024px] mx-auto px-10">
-            <Link href="/" className="fixed right- text-4xl p-2 bg-orange-300 rounded-full">🏠</Link>
+            <Link href="/products" className="fixed p-2 bg-orange-300 rounded-full"> &lt;- Volver </Link>
             <h1 className='py-10 text-3xl text-blue-500 text-center border-b-4 border-b-blue-500'>
                 Producto #{producto.id}
             </h1>
