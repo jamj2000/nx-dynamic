@@ -2,7 +2,10 @@ import Link from "next/link";
 
 
 
-export default async function Home() {
+async function Home() {
+
+  // Introducimos un retardo artificial
+  // await new Promise(resolve => setTimeout(resolve, 1000))
 
   return (
     <section className="min-h-screen max-w-[1024px] mx-auto px-10">
@@ -10,30 +13,25 @@ export default async function Home() {
         NextJS: contenido dinámico
       </h1>
 
-      <div className="h-[300px] flex flex-col gap-10 justify-center items-center">
-        <div>
-          <Link href="/productos" className="block text-2xl text-blue-400 font-bold">
+      <div className="h-[400px] flex flex-col gap-10 justify-center content-center">
+        <div className="flex flex-col items-center">
+          <Link href="/productos-db" className="block text-2xl text-blue-400 font-bold">
             BASE DE DATOS
           </Link>
-          Requisitos previos: Deberás tener una base de datos local.
+          <p>Requisitos previos: <span className="font-bold">Deberás tener una servidor MySQL para la DB local.</span></p>
         </div>
 
-        <div>
-          <Link href="/products" className="block text-2xl text-blue-400 font-bold">
+        <div className="flex flex-col items-center">
+          <Link href="/productos-api" className="block text-2xl text-blue-400 font-bold">
             API REST
           </Link>
-          Requisitos previos: Deberás tener un servidor para la API local.
-          <pre className="text-pretty">
-            cd  src/lib
-            npx  json-server  api.json  -p 3001
-          </pre>
-
-
+          <p>Requisitos previos: <span className="font-bold">Deberás tener un servidor JSON para la API local.</span></p>
         </div>
 
       </div>
-
     </section>
   )
 }
+
+export default Home
 

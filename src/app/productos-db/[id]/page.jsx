@@ -3,21 +3,25 @@ import { notFound } from 'next/navigation'
 import { db } from '@/lib/db'
 
 
-async function ProductoPage({ params }) {
-
+async function obtenerProducto(id) {
     const sql = 'select * from productos where id = ?';
-    const values = [params.id]
+    const values = [id]
     const [rows] = await db.query(sql, values);
 
     // Introducimos un retardo artificial
     // await new Promise(resolve => setTimeout(resolve, 2000))
 
-    const producto = rows[0]
+    return rows[0]
+}
+
+
+async function ProductoPage({ params }) {
+    const producto = await obtenerProducto(params.id)
     if (!producto) notFound()
 
     return (
-        <section className="min-h-screen max-w-[1024px] mx-auto px-10">
-            <Link href="/products" className="fixed p-2 bg-orange-300 rounded-full"> &lt;- Volver </Link>
+        <section className="min-h-screen max-w-[1024px] mx-auto px-10 py-10">
+            <Link href="/productos-db" className="fixed p-2 bg-orange-300 rounded-full"> &lt;- Volver </Link>
             <h1 className='py-10 text-3xl text-blue-500 text-center border-b-4 border-b-blue-500'>
                 Producto #{producto.id}
             </h1>

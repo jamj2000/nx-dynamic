@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS productos;
+
 CREATE DATABASE productos;
 USE productos;
 
