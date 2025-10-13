@@ -9,14 +9,15 @@ async function obtenerProducto(id) {
     const [rows] = await db.query(sql, values);
 
     // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     return rows[0]
 }
 
 
 async function ProductoPage({ params }) {
-    const producto = await obtenerProducto(params.id)
+    const { id } = await params
+    const producto = await obtenerProducto(id)
     if (!producto) notFound()
 
     return (

@@ -9,9 +9,9 @@ async function obtenerProductos(query) {
     const sql = 'select * from `productos` where nombre like ?';
     const values = [`%${query}%`]
     const [productos] = await db.query(sql, values);
-    
+
     // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     return productos
 }

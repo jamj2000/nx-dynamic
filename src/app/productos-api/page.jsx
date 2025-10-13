@@ -1,13 +1,14 @@
+import { Suspense } from "react";
 import Link from "next/link";
+
 import Fallback from "@/components/fallback";
 import Productos from "@/components/api-productos";
 import ProductoNuevo from "@/components/api-producto-nuevo";
-import { Suspense } from "react";
 
 
-
-function ProductosPage({ searchParams }) {
-    const query = searchParams?.query || '';
+async function ProductosPage({ searchParams }) {
+    let { query } = await searchParams
+    query ??= ''
 
     return (
         <section className="min-h-screen max-w-[1024px] mx-auto px-10 py-10">
@@ -17,11 +18,11 @@ function ProductosPage({ searchParams }) {
                 API REST
             </h1>
 
-            <Suspense fallback={ <Fallback>Nuevo producto ... </Fallback> }>
-                <ProductoNuevo  />
+            <Suspense fallback={<Fallback>Nuevo producto ... </Fallback>}>
+                <ProductoNuevo />
             </Suspense>
 
-            <Suspense fallback={ <Fallback>Obteniendo datos ... </Fallback> }>
+            <Suspense fallback={<Fallback>Obteniendo datos ... </Fallback>}>
                 <Productos query={query} />
             </Suspense>
         </section>

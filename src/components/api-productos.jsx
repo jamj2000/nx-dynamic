@@ -8,7 +8,7 @@ async function obtenerProductos(query) {
     const productos = await response.json()
 
     // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     return productos.filter(a => a.nombre.toLowerCase().includes(query))
 }
