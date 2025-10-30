@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Fallback from "@/components/fallback";
 import Productos from "@/components/api-productos";
-import ProductoNuevo from "@/components/api-producto-nuevo";
+import ProductoNuevoAPI from "@/components/api-producto-nuevo";
 
 
 async function ProductosPage({ searchParams }) {
@@ -18,9 +18,8 @@ async function ProductosPage({ searchParams }) {
                 API REST
             </h1>
 
-            <Suspense fallback={<Fallback>Nuevo producto ... </Fallback>}>
-                <ProductoNuevo />
-            </Suspense>
+            <ProductoNuevoAPI />
+
 
             <Suspense fallback={<Fallback>Obteniendo datos ... </Fallback>}>
                 <Productos query={query} />

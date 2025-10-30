@@ -1,23 +1,12 @@
+import { obtenerProductoAPI } from "@/lib/data";
 import Link from "next/link";
 import { notFound } from 'next/navigation'
-
-
-async function obtenerProducto(id) {
-    const response = await fetch('http://localhost:3001/productos/' + id)
-    if (!response.ok) notFound()
-    const producto = await response.json()
-
-    // Introducimos un retardo artificial
-    await new Promise(resolve => setTimeout(resolve, 2000))
-
-    return producto
-}
 
 
 async function ProductPage({ params }) {
 
     const { id } = await params
-    const producto = await obtenerProducto(id)
+    const producto = await obtenerProductoAPI(id)
 
     return (
         <section className="min-h-screen max-w-[1024px] mx-auto px-10 py-10">

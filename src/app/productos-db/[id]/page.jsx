@@ -1,23 +1,12 @@
 import Link from "next/link";
+import { obtenerProductoDB } from "@/lib/data";
 import { notFound } from 'next/navigation'
-import { db } from '@/lib/db'
 
-
-async function obtenerProducto(id) {
-    const sql = 'select * from productos where id = ?';
-    const values = [id]
-    const [rows] = await db.query(sql, values);
-
-    // Introducimos un retardo artificial
-    await new Promise(resolve => setTimeout(resolve, 2000))
-
-    return rows[0]
-}
 
 
 async function ProductoPage({ params }) {
     const { id } = await params
-    const producto = await obtenerProducto(id)
+    const producto = await obtenerProductoDB(id)
     if (!producto) notFound()
 
     return (

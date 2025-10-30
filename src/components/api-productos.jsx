@@ -1,32 +1,15 @@
-import Buscar from '@/components/buscar'
 import Link from 'next/link'
-import { revalidatePath } from 'next/cache'
+import Buscar from '@/components/buscar'
+import { obtenerProductosAPI } from '@/lib/data'
+import { eliminarProductoAPI } from '@/lib/action'
 
 
-async function obtenerProductos(query) {
-    const response = await fetch('http://localhost:3001/productos')
-    const productos = await response.json()
 
-    // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
-
-    return productos.filter(a => a.nombre.toLowerCase().includes(query))
-}
-
-
-async function eliminarProducto(formData) {
-    'use server'
-    const id = formData.get('id')
-
-    await fetch('http://localhost:3001/productos/' + id, { method: 'DELETE' })
-
-    revalidatePath('/productos-api')
-}
 
 
 async function Productos({ query }) {
 
-    const productos = await obtenerProductos(query)
+    const productos = await obtenerProductosAPI(query)
 
 
     return (
@@ -45,7 +28,7 @@ async function Productos({ query }) {
                             <div className='flex gap-6'>
                                 <form>
                                     <input type="hidden" name='id' value={producto.id} />
-                                    <button formAction={eliminarProducto} title='ELIMINAR'>❌</button>
+                                    <button formAction={eliminarProductoAPI} title='ELIMINAR'>❌</button>
                                 </form>
                             </div>
                         </div>

@@ -1,37 +1,13 @@
-import Buscar from '@/components/buscar'
 import Link from 'next/link'
-import { db } from '@/lib/db'
-import { revalidatePath } from 'next/cache'
+import Buscar from '@/components/buscar'
+import { eliminarProductoDB } from '@/lib/action'
+import { obtenerProductosDB } from '@/lib/data'
 
-
-
-async function obtenerProductos(query) {
-    const sql = 'select * from `productos` where nombre like ?';
-    const values = [`%${query}%`]
-    const [productos] = await db.query(sql, values);
-
-    // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
-
-    return productos
-}
-
-
-async function eliminarProducto(formData) {
-    'use server'
-    const id = formData.get('id')
-
-    const sql = 'delete from productos where id = ?'
-    const values = [id]
-    await db.query(sql, values);
-
-    revalidatePath('/productos-db')
-}
 
 
 async function Productos({ query }) {
 
-    const productos = await obtenerProductos(query)
+    const productos = await obtenerProductosDB(query)
 
     return (
         <>
@@ -49,7 +25,7 @@ async function Productos({ query }) {
                             <div className='flex gap-6'>
                                 <form>
                                     <input type="hidden" name='id' value={producto.id} />
-                                    <button formAction={eliminarProducto} title='ELIMINAR'>❌</button>
+                                    <button formAction={eliminarProductoDB} title='ELIMINAR'>❌</button>
                                 </form>
                             </div>
                         </div>
