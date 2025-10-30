@@ -18,6 +18,8 @@ function Buscar() {
     }, 300)
 
 
+
+
     return (
         <div className="text-right">
             <input
