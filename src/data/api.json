@@ -13,6 +13,13 @@
       "precio": 20.15,
       "createdAt": "2025-11-06T12:22:34.096Z",
       "id": "2"
+    },
+    {
+      "id": "cb51",
+      "nombre": "Impresora",
+      "descripcion": "Impresora Epson",
+      "precio": 44.99,
+      "createdAt": "2025-11-06T12:50:07.914Z"
     }
   ]
 }
