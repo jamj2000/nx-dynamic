@@ -30,7 +30,7 @@ async function Productos({ query }) {
                                 <ProductoEditarAPI producto={producto} />
                                 <form>
                                     <input type="hidden" name='id' value={producto.id} />
-                                    <button formAction={eliminarProductoAPI} title='ELIMINAR'>❌</button>
+                                    <button formAction={eliminarProductoAPI} title='ELIMINAR' className='text-xl'>🗑️</button>
                                 </form>
                             </div>
                         </div>

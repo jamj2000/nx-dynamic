@@ -48,7 +48,9 @@ function ProductoEditarAPI({ producto }) {
                     </div>
                 </form>
             }
-            <span onClick={() => setVisible(!visible)}>✏️</span>
+            <span onClick={() => setVisible(!visible)}>
+                {visible ? "✖" : "📝"}
+            </span>
         </>
     );
 }

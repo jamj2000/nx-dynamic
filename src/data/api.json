@@ -13,13 +13,6 @@
       "precio": 20.15,
       "createdAt": "2025-11-06T12:22:34.096Z",
       "id": "2"
-    },
-    {
-      "nombre": "Impresora EPSON",
-      "descripcion": "Impresora láser a color",
-      "precio": 360.05,
-      "createdAt": "2025-11-06T12:26:42.505Z",
-      "id": "3"
     }
   ]
 }

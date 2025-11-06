@@ -27,7 +27,7 @@ async function Productos({ query }) {
                                 <ProductoEditarDB producto={producto} />
                                 <form>
                                     <input type="hidden" name='id' value={producto.id} />
-                                    <button formAction={eliminarProductoDB} title='ELIMINAR'>❌</button>
+                                    <button formAction={eliminarProductoDB} title='ELIMINAR'>🗑️</button>
                                 </form>
                             </div>
                         </div>
