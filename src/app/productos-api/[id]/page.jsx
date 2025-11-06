@@ -7,6 +7,7 @@ async function ProductPage({ params }) {
 
     const { id } = await params
     const producto = await obtenerProductoAPI(id)
+    if (!producto) notFound()
 
     return (
         <section className="min-h-screen max-w-[1024px] mx-auto px-10 py-10">

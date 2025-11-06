@@ -21,6 +21,20 @@ export async function nuevoProductoDB(formData) {
 }
 
 
+export async function editarProductoDB(formData) {
+    const id = formData.get('id')
+    const nombre = formData.get('nombre')
+    const descripcion = formData.get('descripcion')
+    const precio = formData.get('precio')
+
+    const sql = 'update productos set nombre=?, descripcion=?, precio=? where id=?'
+    const values = [nombre, descripcion, precio, id];
+
+    const [result, fields] = await db.query(sql, values)
+    revalidatePath('/productos-db')
+}
+
+
 
 
 export async function eliminarProductoDB(formData) {
@@ -48,6 +62,18 @@ export async function nuevoProductoAPI(formData) {
     })
     const data = await response.json()
 
+    revalidatePath('/productos-api')
+}
+
+
+export async function editarProductoAPI(formData) {
+    const [id, nombre, descripcion, precio] = formData.values()
+
+    const response = await fetch('http://localhost:3001/productos/' + id, {
+        method: 'PUT',
+        body: JSON.stringify({ nombre, descripcion, precio: +precio, createdAt: new Date().toISOString() })
+    })
+    const data = await response.json()
     revalidatePath('/productos-api')
 }
 

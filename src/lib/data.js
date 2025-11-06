@@ -50,7 +50,7 @@ export async function obtenerProductosAPI(query) {
 
 export async function obtenerProductoAPI(id) {
     const response = await fetch('http://localhost:3001/productos/' + id)
-    if (!response.ok) notFound()
+    if (!response.ok) return null
     const producto = await response.json()
 
     // Introducimos un retardo artificial
