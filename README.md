@@ -20,3 +20,12 @@ Hacen uso de **`params`** para mostrar un producto.
 ## Construcción del proyecto
 
 ![Build](public/build.png)
+
+
+## Ejecutar la aplicación
+
+```sh
+npm  install
+npm  run  api
+npm  run  dev
+```
